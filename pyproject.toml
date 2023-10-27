@@ -1,0 +1,12 @@
+[build-system]
+requires = ["flit_core >=3,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "simple_bencode"
+version = "0.1.0"
+description = "A simple bencode library in Python."
+authors = [{ name = "Jim Kroner", email = "contactmeongithub@github.com" }]
+
+[project.urls]
+Source = "https://github.com/jbkroner/simple-bencode"
