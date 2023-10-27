@@ -39,19 +39,19 @@ def _decode(data: bytes) -> (any, bytes):
         return _decode_dict(data, dct={})
 
 
-def _decode_list(bencoded_value: bytes, lst: list) -> (list, bytes):
-    bencoded_value = bencoded_value[1:]
+def _decode_list(data: bytes, lst: list) -> (list, bytes):
+    data = data[1:]
 
-    while chr(bencoded_value[0]) != "e":
-        val, bencoded_value = _decode(bencoded_value)
+    while chr(data[0]) != "e":
+        val, data = _decode(data)
         lst.append(val)
-    return lst, bencoded_value[1:]
+    return lst, data[1:]
 
 
-def _decode_dict(bencoded_value: bytes, dct: dict) -> (dict, bytes):
-    bencoded_value = bencoded_value[1:]
-    while chr(bencoded_value[0]) != "e":
-        key, bencoded_value = _decode(bencoded_value)
-        value, bencoded_value = _decode(bencoded_value)
+def _decode_dict(data: bytes, dct: dict) -> (dict, bytes):
+    data = data[1:]
+    while chr(data[0]) != "e":
+        key, data = _decode(data)
+        value, data = _decode(data)
         dct[key.decode()] = value
-    return dct, bencoded_value[1:]
+    return dct, data[1:]
